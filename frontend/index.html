@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Smart Room Dashboard</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="main-container">
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <h2>Smart Living</h2>
+        <div class="topbar-right">
+          <button id="trackBtn" onclick="openAnalytics()">
+            📉 Track Usage
+          </button>
+          <p id="time"></p>
+        </div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <div class="dashboard">
+        <!-- LEFT -->
+        <div class="section">
+          <div class="card">
+            <h4>🌡 Temperature</h4>
+            <h1 id="temp">--</h1>
+            <div class="bar"><div id="tempBar"></div></div>
+          </div>
+
+          <div class="card">
+            <h4>💧 Humidity</h4>
+            <h1 id="hum">--</h1>
+            <div class="bar"><div id="humBar"></div></div>
+          </div>
+        </div>
+
+        <!-- MIDDLE -->
+        <div class="section">
+          <div class="card">
+            <h4>🔆 Ambient Light</h4>
+            <h1 id="light">--</h1>
+            <div class="bar"><div id="lightBar"></div></div>
+          </div>
+
+          <div class="card occupancy-card">
+            <div class="card-header">
+              <h4>👤 Occupancy</h4>
+              <div id="occupancyLight"></div>
+            </div>
+
+            <h1 id="peopleCount">0</h1>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="section">
+          <!-- FAN CARD -->
+          <div class="card">
+            <h4>❄️ Fan Speed</h4>
+
+            <div class="fan-container">
+              <div class="fan-level">
+                <div id="fan1"></div>
+                <div id="fan2"></div>
+                <div id="fan3"></div>
+              </div>
+
+              <div class="fan-labels">
+                <span>Low</span>
+                <span>Med</span>
+                <span>High</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- LIGHT STATUS -->
+          <div class="card">
+            <h4>💡 Light Intensity</h4>
+
+            <div class="fan-container">
+              <div class="fan-level">
+                <div id="light1"></div>
+                <div id="light2"></div>
+                <div id="light3"></div>
+              </div>
+
+              <div class="fan-labels">
+                <span>Low</span>
+                <span>Med</span>
+                <span>High</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- MANUAL CONTROL -->
+        <div class="card">
+          <h4>🎛 Manual Control</h4>
+
+          <!-- FAN CONTROL -->
+          <div class="control-block-1">
+            <p>Fan</p>
+            <div class="control-buttons">
+              <button id="fanMinus" onclick="changeFan(-1)">-</button>
+              <button id="fanPlus" onclick="changeFan(1)">+</button>
+              <button onclick="setFanAuto()">Auto</button>
+            </div>
+          </div>
+
+          <!-- LIGHT CONTROL -->
+          <div class="control-block-2">
+            <p>Light</p>
+            <div class="control-buttons">
+              <button id="lightMinus" onclick="changeLight(-1)">-</button>
+              <button id="lightPlus" onclick="changeLight(1)">+</button>
+              <button onclick="setLightAuto()">Auto</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANALYTICS PAGE -->
+      <div id="analyticsPage" class="analytics hidden">
+        <div class="analytics-header">
+          <h2>📊 Usage Analytics</h2>
+
+          <input type="date" id="datePicker" onchange="loadGraphs()" />
+          <button onclick="closeAnalytics()">⬅ Back</button>
+        </div>
+
+        <div class="graphs-grid">
+          <canvas id="tempHumChart"></canvas>
+          <canvas id="fanChart"></canvas>
+          <canvas id="lightAmbientChart"></canvas>
+          <canvas id="lightUsageChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

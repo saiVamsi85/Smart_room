@@ -1,0 +1,290 @@
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+
+  background: url("media/background.jpg") no-repeat center center/cover;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CONTAINER */
+.main-container {
+  width: 60%;
+  max-height: 80vh;
+
+  border-radius: 18px;
+  padding: 18px;
+
+  background: rgba(71, 69, 69, 0.35);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#trackBtn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+}
+
+/* Analytics page */
+.analytics {
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.analytics-header {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.graphs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+#time {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* DASHBOARD */
+.dashboard {
+  display: flex;
+  gap: 15px;
+}
+
+/* SECTIONS */
+.section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* CARDS */
+.card {
+  flex: 1;
+  padding: 15px;
+  border-radius: 14px;
+  color: white;
+
+  background: rgba(96, 91, 91, 0.12);
+  backdrop-filter: blur(12px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* TEXT */
+.card h3 {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.card h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* BARS */
+.bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+.bar div {
+  height: 100%;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+/* FAN */
+.fan-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fan-level {
+  display: flex;
+  gap: 6px;
+}
+
+.fan-level div {
+  width: 12px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.fan-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* BAR fill color */
+.bar div {
+  height: 100%;
+  border-radius: 8px;
+  transition: 0.3s ease;
+  background: #a0a6ec; /* ✅ theme color */
+}
+
+/* FAN + LIGHT LEVEL ACTIVE COLOR */
+.fan-active,
+.light-active {
+  background: #a0a6ec !important;
+}
+
+/* OCCUPANCY */
+.occupancy-card {
+  position: relative;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* small LED top-right */
+#occupancyLight {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+
+/* center number */
+#peopleCount {
+  font-size: 26px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* CONTROL BLOCK */
+.control-block-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.control-block-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* LABEL */
+.control-block p {
+  margin: 0; /* remove default margins */
+  opacity: 0.9;
+}
+
+/* BUTTON CONTAINER */
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+/* COMMON BUTTON STYLE */
+.control-buttons button {
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* + - CIRCLE BUTTONS */
+#fanMinus,
+#fanPlus,
+#lightMinus,
+#lightPlus {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #a0a6ec;
+  color: white;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* HOVER */
+#fanMinus:hover,
+#fanPlus:hover,
+#lightMinus:hover,
+#lightPlus:hover {
+  box-shadow: 0 0 12px rgba(160, 166, 236, 0.7);
+}
+
+/* AUTO BUTTON */
+.control-buttons button:last-child {
+  padding: 8px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  min-width: 70px;
+  font-weight: 200;
+}
+
+/* AUTO HOVER */
+.control-buttons button:last-child:hover {
+  background: #a0a6ec;
+}
+
+/* DISABLED */
+.control-buttons button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.2);
+  color: #aaa;
+  box-shadow: none;
+}
+
+/* CLICK FEEDBACK */
+.control-buttons button:active {
+  transform: scale(0.92);
+}

@@ -1,0 +1,12 @@
+# Dependencies
+backend/node_modules/
+
+# Local data files
+data/
+
+# Media files
+frontend/media/
+
+# Optional
+.env
+*.log
