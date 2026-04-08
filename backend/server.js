@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
+const csv = require("csv-parser");
 
 const app = express();
 app.use(express.json());
@@ -113,6 +114,79 @@ app.post("/data", (req, res) => {
     console.error("Server error:", err);
     res.status(500).json({ error: "Server error" });
   }
+});
+
+app.get("/analytics", (req, res) => {
+  const date = req.query.date; // YYYY-MM-DD
+  const results = [];
+  const ANALYTICS_FILE = path.join(
+    __dirname,
+    "..",
+    "data",
+    "smart_room_final_realistic.csv",
+  );
+
+  fs.createReadStream(ANALYTICS_FILE)
+    .on("error", (err) => {
+      console.error("File error:", err.message);
+      res.status(500).json({ error: "CSV file not found" });
+    })
+    .pipe(csv())
+    .on("data", (row) => {
+      const rowDate = row.datetime.split(" ")[0];
+
+      // convert format DD-MM-YYYY → YYYY-MM-DD
+      const [d, m, y] = rowDate.split("-");
+      const formatted = `${y}-${m}-${d}`;
+
+      if (formatted === date) {
+        const hour = parseInt(row.datetime.split(" ")[1].split(":")[0]);
+
+        results.push({
+          hour,
+          temp: parseFloat(row.temp),
+          hum: parseFloat(row.hum),
+          light: parseFloat(row.light),
+          fanLevel: parseInt(row.fanLevel),
+          lightLevel: parseInt(row.lightLevel),
+        });
+      }
+    })
+    .on("end", () => {
+      const grouped = {};
+
+      results.forEach((r) => {
+        if (!grouped[r.hour]) grouped[r.hour] = [];
+        grouped[r.hour].push(r);
+      });
+
+      const final = Object.keys(grouped).map((hour) => {
+        const rows = grouped[hour];
+
+        const avg = (key) => rows.reduce((a, b) => a + b[key], 0) / rows.length;
+
+        const mode = (key) => {
+          const freq = {};
+          rows.forEach((r) => {
+            freq[r[key]] = (freq[r[key]] || 0) + 1;
+          });
+          return Object.keys(freq).reduce((a, b) =>
+            freq[a] > freq[b] ? a : b,
+          );
+        };
+
+        return {
+          hour,
+          temp: avg("temp"),
+          hum: avg("hum"),
+          light: avg("light"),
+          fanLevel: Number(mode("fanLevel")),
+          lightLevel: Number(mode("lightLevel")),
+        };
+      });
+      final.sort((a, b) => a.hour - b.hour);
+      res.json(final);
+    });
 });
 
 // send latest data to dashboard

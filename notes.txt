@@ -1,0 +1,25 @@
+1. contribution: nuv hardware .ino code meeda work chesnav and hardware requirements and related things chuskunnav, nen motham software things chuskunna, paul documentation,  integration and ui design chesnadu ani pettu.
+
+2.a. problem endi ante fan levels and light levels mapping to the real world anedi tough anipinchindi.
+
+2.b. hardware tho work cheyyadam and readings collect cheyyadam 
+
+3. the problem is challenging because first time working with sensors and readings accurate ga measure cheyyadam raledu and integration kuda anni nerchukoni cheyyalsi ochindi so we felt a bit challenging ani rayi
+
+4. solution explanation nen neetho ochi matladutha
+
+5. input just server run chesthe sensors tho oche readings tho backend automations chesthadi, all output is displayed on dashboard, all the usage with the date and time is written in excel sheet for tracking of usage.
+
+6. hardware requirements:
+    ESP32 Microcontroller
+    DHT11 / DHT22 Temperature & Humidity Sensor
+    PIR Motion Sensor
+    LDR (Light Dependent Resistor)
+    Relay Module (for controlling lights, fan, AC)
+    Power Supply
+    Breadboard & Connecting wires
+
+   software used:
+    html, js, css, arduino ide
+
+7. 15-20 days

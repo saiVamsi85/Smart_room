@@ -14,7 +14,7 @@
     <div class="main-container">
       <!-- TOP BAR -->
       <div class="topbar">
-        <h2>Smart Living</h2>
+        <h2>🏠 Smart Living</h2>
         <div class="topbar-right">
           <button id="trackBtn" onclick="openAnalytics()">
             📉 Track Usage
@@ -123,26 +123,13 @@
           </div>
         </div>
       </div>
-
-      <!-- ANALYTICS PAGE -->
-      <div id="analyticsPage" class="analytics hidden">
-        <div class="analytics-header">
-          <h2>📊 Usage Analytics</h2>
-
-          <input type="date" id="datePicker" onchange="loadGraphs()" />
-          <button onclick="closeAnalytics()">⬅ Back</button>
-        </div>
-
-        <div class="graphs-grid">
-          <canvas id="tempHumChart"></canvas>
-          <canvas id="fanChart"></canvas>
-          <canvas id="lightAmbientChart"></canvas>
-          <canvas id="lightUsageChart"></canvas>
-        </div>
-      </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      function openAnalytics() {
+        window.location.href = "http://localhost:3001";
+      }
+    </script>
     <script src="script.js"></script>
   </body>
 </html>

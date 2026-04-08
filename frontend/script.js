@@ -34,10 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------------- BUTTON STATE ----------------
   function updateButtonStates() {
-    fanMinus.disabled = manualFan <= 1;
+    fanMinus.disabled = manualFan <= 0;
     fanPlus.disabled = manualFan >= 3;
 
-    lightMinus.disabled = manualLight <= 1;
+    lightMinus.disabled = manualLight <= 0;
     lightPlus.disabled = manualLight >= 3;
   }
 
@@ -96,8 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------------- CONTROL ----------------
   window.changeFan = function (delta) {
-    if (manualFan === 0) manualFan = 1;
-    else manualFan = Math.max(1, Math.min(3, manualFan + delta));
+    manualFan = Math.max(0, Math.min(3, manualFan + delta));
 
     updateButtonStates();
     applyFanUI(lastData);
@@ -110,8 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   window.changeLight = function (delta) {
-    if (manualLight === 0) manualLight = 1;
-    else manualLight = Math.max(1, Math.min(3, manualLight + delta));
+    manualLight = Math.max(0, Math.min(3, manualLight + delta));
 
     updateButtonStates();
     applyLightUI(lastData);
