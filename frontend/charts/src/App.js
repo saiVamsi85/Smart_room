@@ -15,24 +15,27 @@ import bg from "./assets/background.jpg";
 function App() {
   const [date, setDate] = useState("");
   const [data, setData] = useState([]);
+  const [searched, setSearched] = useState(false);
 
   const fetchData = async () => {
     if (!date) return alert("Select date");
 
+    setSearched(true);
+
     try {
       const res = await axios.get(
-        `http://localhost:3000/analytics?date=${date}`,
+        `https://smart-room-2.onrender.com/analytics?date=${date}`,
       );
       setData(res.data);
     } catch (err) {
-      alert("Error fetching data");
+      setData([]);
     }
   };
 
-  // 🔹 THEME COLORS
+  // THEME COLORS
   const themeColor = "#a0a6ec";
 
-  // 🔹 Glass Card (MATCHED)
+  // Glass Card (MATCHED)
   const glassCard = {
     background: "rgba(96, 91, 91, 0.12)",
     backdropFilter: "blur(12px)",
@@ -59,21 +62,21 @@ function App() {
         alignItems: "center",
       }}
     >
-      {/* 🔹 MAIN GLASS CONTAINER */}
+      {/* MAIN GLASS CONTAINER */}
       <div
         style={{
           width: "60%",
           maxHeight: "80vh",
           borderRadius: "18px",
           padding: "16px",
-          background: "rgba(71, 69, 69, 0.35)", // ✅ MATCHED
+          background: "rgba(71, 69, 69, 0.35)",
           backdropFilter: "blur(10px)",
           display: "flex",
           flexDirection: "column",
           color: "white",
         }}
       >
-        {/* 🔹 TOPBAR */}
+        {/* TOPBAR */}
         <div
           style={{
             display: "flex",
@@ -87,7 +90,7 @@ function App() {
           <button
             onClick={() =>
               (window.location.href =
-                "http://localhost:5500/frontend/index.html")
+                "https://dulcet-tiramisu-040773.netlify.app/")
             }
             style={{
               padding: "6px 12px",
@@ -102,7 +105,7 @@ function App() {
           </button>
         </div>
 
-        {/* 🔹 CONTROLS */}
+        {/* CONTROLS */}
         <div style={{ marginBottom: "10px" }}>
           <input
             type="date"
@@ -131,7 +134,7 @@ function App() {
           </button>
         </div>
 
-        {/* 🔹 GRAPHS */}
+        {/* GRAPHS */}
         {data.length > 0 && (
           <>
             {/* ROW 1 */}
@@ -229,6 +232,12 @@ function App() {
               </div>
             </div>
           </>
+        )}
+
+        {searched && data.length === 0 && (
+          <p style={{ textAlign: "center", marginTop: "20px", color: "#ccc" }}>
+            No data found for selected date
+          </p>
         )}
       </div>
     </div>
