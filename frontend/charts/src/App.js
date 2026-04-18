@@ -89,8 +89,7 @@ function App() {
 
           <button
             onClick={() =>
-              (window.location.href =
-                "https://dulcet-tiramisu-040773.netlify.app/")
+              (window.location.href = "https://smartroomiot.netlify.app/")
             }
             style={{
               padding: "6px 12px",
