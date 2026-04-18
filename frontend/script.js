@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---------------- FETCH ----------------
   async function fetchData() {
     try {
-      const res = await fetch("http://localhost:3000/latest");
+      const res = await fetch("https://smart-room-2.onrender.com/latest");
       const data = await res.json();
 
       if (!data || data.temp === undefined) return;
