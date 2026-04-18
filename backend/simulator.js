@@ -10,9 +10,9 @@ setInterval(async () => {
   };
 
   try {
-    await axios.post("http://localhost:3000/data", data);
+    await axios.post("https://smart-room-2.onrender.com/data", data);
     console.log("Sent:", data);
   } catch (err) {
     console.log("Error sending data");
   }
-}, 15000);
+}, 5000);

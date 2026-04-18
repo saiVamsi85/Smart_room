@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------------- INIT ----------------
-  setInterval(fetchData, 15000);
+  setInterval(fetchData, 5000);
   setInterval(updateTime, 1000);
 
   fetchData();

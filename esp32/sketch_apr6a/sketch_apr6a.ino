@@ -78,5 +78,5 @@ void loop()
         http.end();
     }
 
-    delay(15000); // same as your simulator
+    delay(5000); // same as your simulator
 }
