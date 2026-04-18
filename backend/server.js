@@ -9,6 +9,12 @@ app.use(express.json());
 app.use(cors());
 
 const FILE = path.join(__dirname, "..", "data", "data.csv");
+const ANALYTICS_FILE = path.join(
+  __dirname,
+  "..",
+  "data",
+  "smart_room_final_realistic.csv",
+);
 
 // Ensure file exists
 if (!fs.existsSync(FILE)) {
@@ -109,12 +115,6 @@ app.post("/data", (req, res) => {
 app.get("/analytics", (req, res) => {
   const date = req.query.date; // YYYY-MM-DD
   const results = [];
-  const ANALYTICS_FILE = path.join(
-    __dirname,
-    "..",
-    "data",
-    "smart_room_final_realistic.csv",
-  );
 
   fs.createReadStream(ANALYTICS_FILE)
     .on("error", (err) => {
